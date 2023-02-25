@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @micropost = Micropost.find(params[:id])
     @pagy, @microposts = pagy(@user.microposts.order(id: :desc))
     counts(@user)
   end
@@ -41,7 +42,8 @@ class UsersController < ApplicationController
   
   def likes
     @user = User.find(params[:id])
-    @pagy, @likes = pagy(@user.likes.order(id: :desc))
+    @micropost = Micropost.find(params[:id])
+    @pagy, @likes = pagy(@user.likes)
     counts(@user)
   end
   
